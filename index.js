@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require('dotenv');
+const authentication = require("./controllers/authentication");
+
 dotenv.config();
 
 const app = express();
@@ -23,14 +25,26 @@ mongoose.connect(process.env.MONGOOSE_URL,
     console.log("Connected to database");
 });
 
-app.post('/login',(req,res)=>{
-    const {email_phno,password} = req.body;
-    console.log(email_phno,password);
-    res.status(200).send("Success");
+app.post('/signup',async(req,res)=>{
+    const response = await authentication.signup(req.body);
+    if(response == "SignUp Successful")
+        res.status(200).send(response);
+    else
+        res.status(200).send(response)
 })
 
-app.get('/',(req,res)=>{
-    res.send("jerufh");
+app.post('/login',async(req,res)=>{
+    console.log(req.body);
+    const { email,password,address } = req.body;
+    const response = await authentication.login(email,password,address);
+    if(response == "Valid Authentication")
+        res.status(200).send(response);
+    else
+        res.status(200).send(response);
+})
+
+app.get('/health-check',(req,res)=>{
+    res.status(200).send("API RUNNING");
 })
 
 app.listen(process.env.PORT, (data, err) => {
