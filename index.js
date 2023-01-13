@@ -34,7 +34,6 @@ app.post('/signup',async(req,res)=>{
 })
 
 app.post('/login',async(req,res)=>{
-    console.log(req.body);
     const { email,password,address } = req.body;
     const response = await authentication.login(email,password,address);
     if(response == "Valid Authentication")
