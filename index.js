@@ -6,6 +6,7 @@ const axios = require("axios");
 const authentication = require("./controllers/authentication");
 const fs = require("fs");
 const Permission = require("./controllers/permission");
+const UserService = require("./controllers/users");
 
 dotenv.config();
 
@@ -60,6 +61,10 @@ app.post('/get-doc', (req, res) => {
 
 app.post("/give-permission", async(req, res) => {
     res.send(await Permission.givePermission(req.body.citizen, req.body.authority, req.body.type));
+})
+
+app.post("/get-address",async(req,res)=>{
+    res.send(await UserService.getAddress(req.body.email));
 })
 
 app.listen(process.env.PORT, (data, err) => {
