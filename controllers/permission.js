@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const Permission = require("../model/Permission");
 
 const givePermission = async (citizen, authority, type) => {

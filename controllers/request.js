@@ -16,4 +16,10 @@ const addRequest = async (citizen, authority, type) => {
     return { msg: "Request sent successfully" };
 }
 
-module.exports = { addRequest: addRequest }
+const getAllRequests = async(email) => {
+    console.log(email);
+    const data = await Request.find({citizen: email});
+    return data;
+}
+
+module.exports = { addRequest: addRequest, getAllRequests: getAllRequests }

@@ -68,6 +68,10 @@ app.post("/get-address",async(req,res)=>{
     res.send(await UserService.getAddress(req.body.email));
 })
 
+app.post("/get-requests",async(req,res)=>{
+    res.send(await RequestService.getAllRequests(req.body.email));
+})
+
 app.post("/add-request",async(req,res)=>{
     res.send(await RequestService.addRequest(req.body.citizen, req.body.authority, req.body.type))
 })
