@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Permission = require("../model/Permission");
 
 const givePermission = async (citizen, authority, type) => {
+    console.log(citizen,authority,type)
     const data = await Permission.find({ citizen: citizen, authority: authority });
     if (data?.length > 0) {
         if (data[0].type == 2 || type == data[0].type) {
@@ -14,4 +15,4 @@ const givePermission = async (citizen, authority, type) => {
     return { msg: "Write Access Granted" };
 }
 
-modules.exports = { givePermission: givePermission }
+module.exports = { givePermission: givePermission }

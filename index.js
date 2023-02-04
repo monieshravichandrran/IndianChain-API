@@ -58,8 +58,8 @@ app.post('/get-doc', (req, res) => {
     });
 })
 
-app.post("/give-permission", (req, res) => {
-    res.send(Permission.givePermission(req.citizen, req.authority, req.type));
+app.post("/give-permission", async(req, res) => {
+    res.send(await Permission.givePermission(req.body.citizen, req.body.authority, req.body.type));
 })
 
 app.listen(process.env.PORT, (data, err) => {

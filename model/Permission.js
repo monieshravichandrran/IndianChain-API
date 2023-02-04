@@ -7,6 +7,6 @@ const PermissionSchema = new Schema({
     type: Number
 });
 
-const Permission = mongoose.model('User', Permission);
+const Permission = mongoose.model('Permission', PermissionSchema);
 
 module.exports = Permission;
