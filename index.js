@@ -7,6 +7,7 @@ const authentication = require("./controllers/authentication");
 const fs = require("fs");
 const Permission = require("./controllers/permission");
 const UserService = require("./controllers/users");
+const RequestService = require("./controllers/request");
 
 dotenv.config();
 
@@ -65,6 +66,10 @@ app.post("/give-permission", async(req, res) => {
 
 app.post("/get-address",async(req,res)=>{
     res.send(await UserService.getAddress(req.body.email));
+})
+
+app.post("/add-request",async(req,res)=>{
+    res.send(await RequestService.addRequest(req.body.citizen, req.body.authority, req.body.type))
 })
 
 app.listen(process.env.PORT, (data, err) => {
