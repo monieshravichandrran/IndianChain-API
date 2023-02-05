@@ -8,15 +8,15 @@ const mongoose = require("mongoose");
 // 4 => Govt, Eseva
 
 const signupHandler = async (payload) => {
-    if (payload.type != 4) {
+    if (payload.usertype != 4) {
         return "Not a Govt Eseva account";
     }
     const userExist = await User.find({ email: payload.email });
     if (userExist?.length) {
         return "User already exist";
     }
-
-    const result = await User.collection.insertOne(payload);
+    const newload = {email: payload.email, password: payload.password, address: payload.address};
+    const result = await User.collection.insertOne(newload);
     return "Account created";
 }
 
