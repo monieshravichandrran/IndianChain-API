@@ -15,7 +15,7 @@ const signupHandler = async (payload) => {
     if (userExist?.length) {
         return "User already exist";
     }
-    const newload = {email: payload.email, password: payload.password, address: payload.address};
+    const newload = {email: payload.email, password: payload.password, address: payload.address, type: payload.type};
     const result = await User.collection.insertOne(newload);
     return "Account created";
 }
