@@ -8,6 +8,7 @@ const fs = require("fs");
 const Permission = require("./controllers/permission");
 const UserService = require("./controllers/users");
 const RequestService = require("./controllers/request");
+const pretty = require("pretty");
 
 dotenv.config();
 
@@ -52,12 +53,16 @@ app.get('/health-check', (req, res) => {
     res.status(200).send("API RUNNING");
 })
 
-app.post('/get-doc', (req, res) => {
-    fs.readFile("./sample.html", "utf-8", async (err, data) => {
-        const $ = cheerio.load(data);
+app.post('/get-doc', async(req, res) => {
+    const data = req.body;
+    let fileLinks = [];
+    for(ascii of data){
+        const html = await axios.get("https://ipfs.io/ipfs/" + ascii);
+        const $ = cheerio.load(pretty(html.data));
         const table = $('td>a');
-        res.send("https://ipfs.io" + table[0].attribs.href);
-    });
+        fileLinks.push("https://ipfs.io"+table[0].attribs.href);
+    }
+    res.send(fileLinks);
 })
 
 app.post("/give-permission", async(req, res) => {
