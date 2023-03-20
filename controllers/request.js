@@ -21,4 +21,8 @@ const getAllRequests = async (email) => {
   return data;
 }
 
-module.exports = { addRequest: addRequest, getAllRequests: getAllRequests }
+const deleteRequest = async(citizen, authority, type) => {
+  await Request.deleteMany({ citizen: citizen, authority: authority, type: type });
+}
+
+module.exports = { addRequest: addRequest, getAllRequests: getAllRequests, deleteRequest: deleteRequest }

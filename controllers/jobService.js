@@ -14,6 +14,10 @@ const getJob = async (email) => {
 const getAllJob = async (email) => {
   const data = await Jobs.find({});
   return data;
+};
+
+const deleteJob = async(organization, description, title) => {
+  await Jobs.deleteMany({ organization: organization, description: description, title: title });
 }
 
 module.exports = { addJob: addJob, getJob: getJob, getAllJob: getAllJob };
