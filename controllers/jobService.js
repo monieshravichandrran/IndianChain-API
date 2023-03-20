@@ -1,8 +1,8 @@
 const Jobs = require("../model/Jobs");
 
 const addJob = async (organization, description, title) => {
-  const data = await Jobs.find({ organization: organization, description: description, title: title });
-  const result = await Permission.collection.insertOne(data);
+  //const data = await Jobs.find({ organization: organization, description: description, title: title });
+  const result = await Jobs.collection.insertOne({organization,description,title});
   return;
 };
 
