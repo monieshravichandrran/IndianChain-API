@@ -51,7 +51,7 @@ app.post("/get-all-jobs", async (req, res) => {
 });
 
 app.post("/delete-job", async (req, res) => {
-  res.send(await JobService.deleteRequest(req.body.organization, req.body.description, req.body.title));
+  res.send(await JobService.deleteJob(req.body.organization, req.body.description, req.body.title));
 })
 
 app.listen(process.env.PORT, (data, err) => {

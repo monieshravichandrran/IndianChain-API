@@ -20,4 +20,4 @@ const deleteJob = async(organization, description, title) => {
   await Jobs.deleteMany({ organization: organization, description: description, title: title });
 }
 
-module.exports = { addJob: addJob, getJob: getJob, getAllJob: getAllJob };
+module.exports = { addJob: addJob, getJob: getJob, getAllJob: getAllJob, deleteJob: deleteJob };
