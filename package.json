@@ -19,6 +19,7 @@
     "mongoose": "^6.8.3",
     "nodemon": "^2.0.20",
     "pretty": "^2.0.0",
+    "react-file-viewer": "^1.2.1",
     "solc": "^0.8.17"
   }
 }
