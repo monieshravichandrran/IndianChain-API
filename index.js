@@ -46,7 +46,7 @@ app.post("/get-job", async (req, res) => {
   res.send(await JobService.getJob(req.body.email));
 });
 
-app.post("/get-job", async (req, res) => {
+app.post("/get-job-by-type", async (req, res) => {
   res.send(await JobService.getJobByType(req.body.type));
 });
 
