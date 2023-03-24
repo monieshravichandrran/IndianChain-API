@@ -17,7 +17,12 @@ const getAllJob = async (email) => {
 };
 
 const deleteJob = async(organization, description, title) => {
-  await Jobs.deleteMany({ organization: organization, description: description, title: title });
+  const jobs = Jobs.deleteMany({ organization: organization, description: description, title: title });
+  return jobs;
 }
 
-module.exports = { addJob: addJob, getJob: getJob, getAllJob: getAllJob, deleteJob: deleteJob };
+const getJobByType = async(type) => {
+  await Jobs.find({title: type});
+}
+
+module.exports = { addJob: addJob, getJob: getJob, getAllJob: getAllJob, deleteJob: deleteJob, getJobByType: getJobByType };

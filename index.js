@@ -46,6 +46,10 @@ app.post("/get-job", async (req, res) => {
   res.send(await JobService.getJob(req.body.email));
 });
 
+app.post("/get-job", async (req, res) => {
+  res.send(await JobService.getJobByType(req.body.type));
+});
+
 app.post("/get-all-jobs", async (req, res) => {
   res.send(await JobService.getAllJob());
 });
