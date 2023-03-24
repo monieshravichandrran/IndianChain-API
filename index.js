@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require('dotenv');
 const RequestService = require("./controllers/request");
 const JobService = require("./controllers/jobService");
+const ApplicationService = require("./controllers/applicationService");
 dotenv.config();
 
 const app = express();
@@ -56,7 +57,15 @@ app.post("/get-all-jobs", async (req, res) => {
 
 app.post("/delete-job", async (req, res) => {
   res.send(await JobService.deleteJob(req.body.organization, req.body.description, req.body.title));
-})
+});
+
+app.post("/apply-job", async (req, res) => {
+  res.send(await ApplicationService.applyJob(req.body.jobId, req.body.email));
+});
+
+app.post("/get-job-applicants", async () => {
+  res.send(await ApplicationService.getApplicants(req.body.jobId));
+});
 
 app.listen(process.env.PORT, (data, err) => {
   if (err) {

@@ -21,7 +21,7 @@ const getAllRequests = async (email) => {
   return data;
 }
 
-const deleteRequest = async(citizen, authority, type) => {
+const deleteRequest = async (citizen, authority, type) => {
   await Request.deleteMany({ citizen: citizen, authority: authority, type: type });
 }
 

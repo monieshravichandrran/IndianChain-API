@@ -2,7 +2,7 @@ const Jobs = require("../model/Jobs");
 
 const addJob = async (organization, description, title) => {
   //const data = await Jobs.find({ organization: organization, description: description, title: title });
-  const result = await Jobs.collection.insertOne({organization,description,title});
+  const result = await Jobs.collection.insertOne({ organization, description, title });
   return;
 };
 
@@ -16,13 +16,14 @@ const getAllJob = async (email) => {
   return data;
 };
 
-const deleteJob = async(organization, description, title) => {
+const deleteJob = async (organization, description, title) => {
   const jobs = Jobs.deleteMany({ organization: organization, description: description, title: title });
   return jobs;
 }
 
-const getJobByType = async(type) => {
-  await Jobs.find({title: type});
+const getJobByType = async (type) => {
+  const jobs = await Jobs.find({ title: type });
+  return jobs;
 }
 
 module.exports = { addJob: addJob, getJob: getJob, getAllJob: getAllJob, deleteJob: deleteJob, getJobByType: getJobByType };
